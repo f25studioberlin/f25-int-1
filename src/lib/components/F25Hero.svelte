@@ -88,10 +88,12 @@
   }
 
   // --- Event Handlers & Lifecycle ---
+  function onPointerDown(e: PointerEvent) {
+    pointer.start(e);
+  }
+
   function onPointerMove(e: PointerEvent) {
-    if (browser) {
-      pointer.update(e); // Pass the event to update velocity instantly
-    }
+    pointer.update(e);
   }
 
   async function initialize() {
@@ -112,7 +114,6 @@
     wordSizer = new WordSizer(words.map(stripF), fontStyle);
 
     raf = requestAnimationFrame(animationLoop);
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
   }
 
   onMount(initialize);
@@ -120,12 +121,11 @@
   onDestroy(() => {
     if (browser) {
       cancelAnimationFrame(raf);
-      window.removeEventListener('pointermove', onPointerMove);
     }
   });
 </script>
 
-<main class="hero" bind:this={root}>
+<main class="hero" bind:this={root} on:pointerdown={onPointerDown} on:pointermove={onPointerMove}>
   <div class="headline-container">
     <h1 class="brand">
       <span class="f" bind:this={fEl}>f</span>
@@ -200,5 +200,14 @@
     color: #000;
     font-weight: 500; /* Match headline weight */
     line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .brand {
+      font-size: 10rem;
+    }
+    .tagline {
+      font-size: 5rem;
+    }
   }
 </style>

@@ -54,14 +54,38 @@ export function getTextWidth(text: string, font: string): number {
  */
 export class PointerTracker {
   private smoothedV = 0;
+  private lastX = 0;
+  private lastY = 0;
   private alpha = 1 - Math.exp(-1 / 6); // ~100ms time constant
+
+  /**
+   * Call this when the pointer is pressed down.
+   */
+  public start(e: PointerEvent): void {
+    this.lastX = e.clientX;
+    this.lastY = e.clientY;
+  }
 
   /**
    * Call this on every pointer move event to update the velocity.
    * @param e The pointer event from the browser.
    */
   public update(e: PointerEvent): void {
-    const instV = Math.hypot(e.movementX ?? 0, e.movementY ?? 0) / 16; // px/ms
+    let movementX = 0;
+    let movementY = 0;
+    const touchMultiplier = 2.5; // Boost touch velocity
+
+    if (e.pointerType === 'touch') {
+      movementX = (e.clientX - this.lastX) * touchMultiplier;
+      movementY = (e.clientY - this.lastY) * touchMultiplier;
+      this.lastX = e.clientX;
+      this.lastY = e.clientY;
+    } else {
+      movementX = e.movementX ?? 0;
+      movementY = e.movementY ?? 0;
+    }
+
+    const instV = Math.hypot(movementX, movementY) / 16; // px/ms
     this.smoothedV += (instV - this.smoothedV) * this.alpha;
   }
 
