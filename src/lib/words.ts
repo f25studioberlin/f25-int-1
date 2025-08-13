@@ -2,69 +2,23 @@
 // Note: This is a starter set. You can add more or load from a service.
 // The UI shows the word WITHOUT the leading 'f' because the leading 'f' is drawn separately.
 export const fWords: string[] = [
-  // English (Existing + New from Merriam-Webster)
-  'fabric', 'fable', 'fabled', 'fabulous', 'facet', 'facade', 'face', 'facility', 'fact', 'factor', 'factory', 'faculty',
-  'fade', 'fading', 'fahrenheit', 'fail', 'fair', 'faith', 'fake', 'falcon', 'fall', 'fallen', 'falling', 'false', 'fame', 'familiar',
-  'family', 'famine', 'famous', 'fan', 'fancy', 'fantasy', 'fantastic', 'far', 'fare', 'farm', 'farmer', 'farming', 'fascinate', 'fashion',
-  'fast', 'faster', 'fastest', 'fat', 'fatal', 'fate', 'father', 'fathom', 'fatigue', 'fatten', 'fault', 'faultless', 'faulty',
-  'fauna', 'favor', 'favorite', 'fawn', 'fax', 'fear', 'fearless', 'feast', 'feat', 'feather', 'feature', 'february', 'federal', 'federation',
-  'fee', 'feed', 'feedback', 'feeding', 'feel', 'feeling', 'feign', 'feint', 'felicity', 'feline', 'fell', 'fellow', 'felony', 'felt',
-  'female', 'feminine', 'feminist', 'fence', 'fend', 'ferment', 'fern', 'ferocious', 'ferric', 'ferry', 'fertile', 'fertility', 'fervor',
-  'festival', 'festive', 'fetch', 'fetish', 'feudal', 'fever', 'few', 'fez', 'fiat', 'fiasco', 'fiber', 'fiction', 'fiddle', 'fidelity',
-  'field', 'fierce', 'fiery', 'fifteen', 'fifth', 'fiftieth', 'fifty', 'fight', 'fighter', 'figure', 'figurative', 'filament', 'file', 'fill',
-  'filler', 'filling', 'film', 'filter', 'final', 'finale', 'finance', 'find', 'finder', 'fine', 'finesse', 'finger', 'finish', 'finite',
-  'fire', 'firefly', 'firm', 'first', 'fiscal', 'fish', 'fisher', 'fishing', 'fission', 'fist', 'fit', 'fitness', 'fitting', 'five',
-  'fix', 'fixture', 'fizz', 'fjord', 'flair', 'flake', 'flame', 'flamingo', 'flank', 'flare', 'flash', 'flat', 'flatter', 'flavor', 'flaw',
-  'flea', 'fled', 'fleece', 'fleet', 'flesh', 'flex', 'flexible', 'flick', 'flicker', 'flight', 'flinch', 'fling', 'flip', 'flirt', 'float',
-  'flock', 'flood', 'floor', 'flora', 'floral', 'flour', 'flourish', 'flow', 'flower', 'flowing', 'flu', 'fluctuate', 'fluent', 'fluff',
-  'fluid', 'fluke', 'flung', 'flurry', 'flush', 'flute', 'flux', 'fly', 'flyer', 'flying', 'foam', 'focus', 'fodder', 'foe', 'fog', 'foggy',
-  'foil', 'fold', 'folk', 'follow', 'following', 'fond', 'font', 'food', 'fool', 'foot', 'football', 'footing', 'footnote', 'footprint',
-  'forage', 'foray', 'forbid', 'force', 'forced', 'forceful', 'ford', 'fore', 'forecast', 'forefront', 'foreign', 'foresee', 'forest', 'forever',
-  'forge', 'forged', 'forger', 'forgery', 'forget', 'forgive', 'forgiving', 'fork', 'form', 'formal', 'format', 'formation', 'former', 'formula',
-  'forth', 'fortify', 'fortress', 'fortune', 'forum', 'forward', 'found', 'foundation', 'founder', 'foundry', 'fountain', 'four', 'fourth', 'fowl',
-  'fox', 'foxtrot', 'foyer', 'fragile', 'fragment', 'fragrance', 'frail', 'frame', 'framework', 'franc', 'frank', 'frantic', 'fraud', 'fray',
-  'freak', 'freckle', 'free', 'freed', 'freedom', 'freeform', 'freelance', 'freely', 'freeze', 'freezer', 'freight', 'french', 'frenzy', 'frequency',
-  'frequent', 'fresh', 'freshen', 'freshly', 'friend', 'friendly', 'friendship', 'fright', 'frighten', 'fringe', 'frisky', 'fritter', 'frivolous',
-  'front', 'frontier', 'frost', 'frown', 'frozen', 'frugal', 'fruit', 'fruitful', 'frustrate', 'fry', 'fuel', 'fugitive', 'fulcrum', 'fulfil',
-  'full', 'fuller', 'fullest', 'fully', 'fulsome', 'fume', 'fumigate', 'fun', 'function', 'fund', 'fundamental', 'funding', 'fungi', 'fungus',
-  'funnel', 'funny', 'fur', 'furious', 'furnace', 'furnish', 'furniture', 'furor', 'furry', 'further', 'fury', 'fuse', 'fusion', 'fuss', 'fussy',
-  'futile', 'future', 'futurism', 'fuzzy', 'factoid', 'farfet', 'faux', 'fecials', 'felinophobes', 'feoda', 'fervidly', 'fiar', 'filmography',
-  'fingertip', 'flailing', 'flay', 'fliffus', 'flossy', 'flukey', 'fogbow', 'fondle', 'foozling', 'foredone', 'forme', 'fractional', 'fraudulency',
-  'flukeworm', 'fogbound', 'fondish', 'foozler', 'foredoing', 'fortnighter', 'fraudulence', 'frighted', 'fruiteress', 'fruitery', 'fulgency',
-  'fumose', 'furling', 'furlong', 'fz',
+  // English
+  'fabric', 'fable', 'face', 'fact', 'factor', 'fall', 'family', 'fan', 'fancy', 'fantasy', 'farm', 'fashion', 'fast', 'fate', 'father', 'fault', 'fear', 'feast', 'feather', 'feature', 'feel', 'feeling', 'fiction', 'field', 'fight', 'figure', 'file', 'fill', 'film', 'final', 'finance', 'find', 'fine', 'finger', 'finish', 'fire', 'fish', 'fit', 'five', 'fix', 'flag', 'flame', 'flash', 'flat', 'flavor', 'flesh', 'flight', 'float', 'flood', 'floor', 'flow', 'flower', 'fly', 'focus', 'fog', 'fold', 'folk', 'follow', 'food', 'foot', 'force', 'forest', 'form', 'fortune', 'forward', 'foundation', 'four', 'fox', 'frame', 'framework', 'free', 'freedom', 'freeze', 'frequency', 'fresh', 'friend', 'front', 'fruit', 'fuel', 'full', 'fun', 'function', 'fund', 'future',
 
   // German
-  'Farbe', 'Fest', 'Feuer', 'Fisch', 'Flasche', 'fliegen', 'Frau', 'Freund', 'Frühling', 'Fuchs',
+  'Fabel', 'Fabrik', 'Fach', 'Faden', 'Fähre', 'Fahne', 'Fahrt', 'Falke', 'Falle', 'Farbe', 'Farn', 'Fassade', 'Fass', 'fast', 'Faulheit', 'Faun', 'Faust', 'Favorit', 'Fax', 'Fazit', 'Feder', 'Fee', 'Fehler', 'Feier', 'fein', 'Feind', 'Feld', 'Felge', 'Fell', 'Fels', 'Fenster', 'Ferien', 'Ferne', 'Ferse', 'fest', 'Fest', 'fett', 'Feuer', 'Fiale', 'Fiasko', 'Fibel', 'Fichte', 'Fiktion', 'Filet', 'Film', 'Filter', 'Filz', 'Finanz', 'finden', 'Finger', 'Fink', 'Finne', 'Firma', 'Fisch', 'fix', 'flach', 'Flagge', 'Flamme', 'Flasche', 'Flaum', 'Fleck', 'Fledermaus', 'Fleisch', 'Flieder', 'Fliege', 'fliegen', 'Fliese', 'fließen', 'Flinte', 'Flirt', 'Flitter', 'Floh', 'Flocke', 'florieren', 'Flosse', 'Flöte', 'flott', 'Fluch', 'Flucht', 'Flug', 'Flügel', 'Fluss', 'Flut', 'Fokus', 'folgen', 'Folie', 'Folter', 'Fonds', 'Fontäne', 'fordern', 'Forelle', 'Form', 'Formel', 'forschen', 'Forst', 'fort', 'Forum', 'Fossil', 'Foto', 'Foyer', 'Fracht', 'Frage', 'Fragment', 'Fraktion', 'frank', 'Franse', 'Frau', 'frech', 'frei', 'Freude', 'Freund', 'Frieden', 'frisch', 'Frosch', 'Frost', 'früh', 'Fuchs', 'Fuge', 'fühlen', 'führen', 'Füller', 'Fund', 'Funk', 'Funke', 'für', 'Furt', 'Furz', 'Fusion', 'Fuß', 'Futter',
 
   // Spanish
-  'fácil', 'familia', 'fiesta', 'flor', 'fuego', 'fuerte', 'fútbol',
+  'fábrica', 'fácil', 'factor', 'facultad', 'falda', 'falso', 'falta', 'familia', 'famoso', 'fantasía', 'fantasma', 'farmacia', 'farol', 'fase', 'favor', 'fe', 'febrero', 'fecha', 'feliz', 'fenómeno', 'feria', 'feroz', 'ferrocarril', 'fiable', 'fibra', 'ficción', 'ficha', 'fidelidad', 'fiebre', 'fiesta', 'figura', 'fijar', 'fila', 'filial', 'filmar', 'filosofía', 'filtrar', 'fin', 'final', 'financiar', 'finca', 'fingir', 'fino', 'firma', 'fiscal', 'físico', 'flaco', 'flamenco', 'flecha', 'flexible', 'flor', 'flota', 'fluir', 'flujo', 'fobia', 'foco', 'fogata', 'folio', 'fondo', 'forma', 'formidable', 'fórmula', 'fortaleza', 'fortuna', 'forzar', 'foto', 'fracasar', 'fracción', 'frágil', 'francia', 'franja', 'frase', 'fraude', 'frecuencia', 'fregar', 'freír', 'frenar', 'freno', 'frente', 'fresa', 'fresco', 'frío', 'frito', 'frontera', 'fruta', 'fuego', 'fuente', 'fuera', 'fuerte', 'fuerza', 'fuga', 'fumar', 'función', 'fundación', 'fundamental', 'fundir', 'fúnebre', 'furioso', 'fútbol', 'futuro',
 
   // French
-  'fleur', 'fromage', 'famille', 'fenêtre', 'fille', 'frère',
+  'fable', 'fabricant', 'fabriquer', 'façade', 'face', 'facile', 'façon', 'facteur', 'facture', 'faculté', 'faible', 'faim', 'faire', 'faisan', 'fait', 'falloir', 'falsifier', 'famille', 'fan', 'fanfare', 'fantaisie', 'fantastique', 'fantôme', 'farce', 'farine', 'fasciner', 'fatigue', 'faute', 'fauteuil', 'fauve', 'faux', 'faveur', 'fébrile', 'féconder', 'fédéral', 'fée', 'féliciter', 'féminin', 'femme', 'fendre', 'fenêtre', 'fente', 'fer', 'ferme', 'fermer', 'féroce', 'fertile', 'fête', 'feu', 'feuille', 'feutre', 'février', 'fiable', 'fiancé', 'fibre', 'ficelle', 'fiche', 'fichier', 'fier', 'fierté', 'fièvre', 'figue', 'figure', 'fil', 'filet', 'fille', 'film', 'fils', 'filtre', 'fin', 'final', 'finance', 'finir', 'fiole', 'firme', 'fixer', 'flacon', 'flair', 'flamme', 'flanc', 'flanelle', 'flaque', 'flash', 'flatter', 'flèche', 'flegme', 'fleur', 'fleuve', 'flexible', 'flocon', 'flotter', 'fluide', 'flûte', 'foi', 'foie', 'foin', 'foire', 'fois', 'folie', 'fonction', 'fond', 'fondamental', 'fonder', 'fondre', 'fonds', 'fontaine', 'fonte', 'football', 'force', 'forêt', 'forfait', 'forge', 'forme', 'formel', 'formidable', 'formule', 'fort', 'forteresse', 'fortune', 'forum', 'fosse', 'fou', 'foudre', 'fouet', 'fougère', 'fouiller', 'foule', 'four', 'fourchette', 'fourmi', 'fournir', 'fourrure', 'foutaise', 'foyer', 'fraction', 'fracture', 'fragile', 'frais', 'fraise', 'franc', 'français', 'franchir', 'frange', 'frapper', 'fraude', 'frein', 'fréquent', 'frère', 'fresque', 'frigo', 'fripon', 'frire', 'frisson', 'froid', 'fromage', 'froment', 'front', 'frontière', 'frotter', 'fruit', 'fuir', 'fuite', 'fumée', 'funèbre', 'funérailles', 'furieux', 'fusée', 'fusil', 'fusion', 'futile', 'futur',
 
-  // Italian
-  'famiglia', 'festa', 'fiore', 'formaggio', 'fratello', 'frutta',
+  // Russian (Cyrillic)
+  'фабрика', 'фаворит', 'фаза', 'факел', 'факт', 'фактор', 'факультет', 'фамилия', 'фанат', 'фантазия', 'фантом', 'фара', 'фарфор', 'фасад', 'фасоль', 'фатальный', 'фауна', 'февраль', 'федерация', 'феномен', 'ферма', 'фестиваль', 'фея', 'фиаско', 'фигура', 'физик', 'физика', 'фикус', 'филиал', 'философ', 'фильм', 'фильтр', 'финал', 'финансы', 'финиш', 'фирма', 'фисташка', 'флаг', 'флакон', 'фламинго', 'фланг', 'флейта', 'флирт', 'флот', 'флора', 'фокус', 'фольга', 'фон', 'фонарь', 'фонтан', 'форель', 'форма', 'формат', 'формула', 'фортепиано', 'форточка', 'форум', 'фото', 'фотограф', 'фрагмент', 'фракция', 'фраза', 'французский', 'фреска', 'фронт', 'фрукт', 'фундамент', 'функция', 'фунт', 'футбол', 'футляр',
 
-  // Portuguese
-  'faca', 'falar', 'família', 'festa', 'filho', 'flor', 'fogo',
-
-  // Dutch
-  'familie', 'fiets', 'foto', 'fout',
-
-  // Swedish
-  'familj', 'färg', 'fönster', 'fotboll',
-
-  // Russian
-  'факт', 'ферма', 'фигура', 'фильм', 'флаг', 'флот', 'фото', 'фрукт', 'футболка',
-
-  // Japanese
-  '富士山', '不思議', '普通', '冬',
-
-  // User-specified
-  'falestina'
+  // Japanese (Kanji, Hiragana, Katakana)
+  'ファクト', 'ファミリー', 'ファン', 'ファンタジー', 'ファッション', 'フィールド', 'フィルム', 'フィルター', 'フィギュア', 'フェスティバル', 'フォーカス', 'フォーム', 'フォーラム', 'フォント', 'フライ', 'フライト', 'フルーツ', 'フリーズ', 'フロント', 'フロア', 'フォーク', 'フェンス', 'ファイル', 'ファックス', 'フィードバック', 'フラッシュ', 'フレーム', '不便', '不足', '付属', '普段', '普及', '普遍', '風景', '風船', '風俗', '風', '不思議', '不滅', '不明', '不良', '古い', '震える', '振る舞い', '深い', '複合', '複雑', '複製', '富士山', '普通', '冬', '浮世絵', '舟', 'フィンランド', 'フランス', 'フットボール'
 ];
 
-export function ensureFHead(words: string[]): string[] {
-  // Keep only words that start with 'f' or 'F'
-  return words.filter((w) => /^f/i.test(w));
-}
+

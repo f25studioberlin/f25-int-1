@@ -3,7 +3,7 @@
   import { browser } from '$app/environment';
   import { scale } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
-  import { fWords as RAW_WORDS, ensureFHead } from '$lib/words';
+  import { fWords as RAW_WORDS } from '$lib/words';
   import { googleFonts } from '$lib/fonts';
   import { PointerTracker, WordSizer, type SizedWord, mapToCurve } from '$lib/utils';
 
@@ -17,7 +17,7 @@
   let wordSizer: WordSizer | null = null;
 
   // --- Word Dictionary Setup ---
-  const words = Array.from(new Set(ensureFHead(RAW_WORDS).map((w) => w.trim().toLowerCase()).filter(Boolean)));
+  const words = Array.from(new Set(RAW_WORDS.map((w) => w.trim().toLowerCase()).filter(Boolean)));
   const stripF = (w: string) => w.replace(/^f/i, '');
 
   // --- Animation & Word State ---
@@ -106,10 +106,11 @@
     if (typeof document === 'undefined') return;
     const chosen = googleFonts[Math.floor(Math.random() * googleFonts.length)];
     const family = chosen.split(':')[0].replace(/\+/g, ' ');
-    const href = `https://fonts.googleapis.com/css2?family=${chosen}&display=swap`;
+    const encodedFontName = encodeURIComponent(chosen);
+    const fontUrl = `https://fonts.googleapis.com/css2?family=${encodedFontName}:wght@400;700&display=swap&subset=latin,latin-ext,cyrillic,japanese`;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = href;
+    link.href = fontUrl;
     document.head.appendChild(link);
     root.style.setProperty('--brandFont', `'${family}', system-ui, sans-serif`);
 
