@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
   import maplibregl from 'maplibre-gl';
   import 'maplibre-gl/dist/maplibre-gl.css';
-  import { PUBLIC_STADIA_API_KEY } from '$env/static/public';
+  
 
   export let lon: number;
   export let lat: number;
@@ -13,7 +13,7 @@
   onMount(() => {
     map = new maplibregl.Map({
       container: mapContainer,
-      style: `https://tiles.stadiamaps.com/styles/stamen_toner.json?api_key=${PUBLIC_STADIA_API_KEY}`,
+      style: '/api/map-style.json',
       center: [lon, lat],
       zoom: 16,
       interactive: false, // Make map non-interactive as requested for style
