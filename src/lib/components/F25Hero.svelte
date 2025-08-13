@@ -76,11 +76,12 @@
 
     root.style.setProperty('--current-gap', `${currentGap.toFixed(2)}px`);
 
-    if (currentGap < MIN_GAP_FOR_WORD) {
-      if (displayWord !== '') displayWord = '';
-    } else if (bestFit && bestFit.word !== displayWord) {
-      if (now - lastWordChangeTime > 100) { // Debounce word changes
-        displayWord = bestFit.word;
+    // When the gap shrinks, findBestFit will naturally select smaller words.
+    // The word will only be empty if no word can fit at all.
+    const newWord = bestFit ? bestFit.word : '';
+    if (newWord !== displayWord) {
+      if (now - lastWordChangeTime > 100) { // Debounce word changes to prevent flickering
+        displayWord = newWord;
         lastWordChangeTime = now;
       }
     }
@@ -128,13 +129,13 @@
 
 <main class="hero" bind:this={root}>
   <h1 class="brand">
-    <span class="f">f</span>
+    <span class="f" bind:this={fEl}>f</span>
     {#key displayWord}
-      <span class="word" in:scale={{ start: 0.9, duration: 100, easing: cubicOut }}>
+      <span class="word" bind:this={wordEl}>
         {displayWord}
       </span>
     {/key}
-    <span class="twenty-five">25</span>
+    <span class="twenty-five" bind:this={twentyFiveEl}>25</span>
   </h1>
 </main>
 
