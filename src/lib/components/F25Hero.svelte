@@ -6,6 +6,7 @@
   import { fWords as RAW_WORDS } from '$lib/words';
   import { googleFonts } from '$lib/fonts';
   import { PointerTracker, WordSizer, type SizedWord, mapToCurve } from '$lib/utils';
+  import Map from '$lib/components/Map.svelte';
 
   // --- DOM Elements & Utils ---
   let root: HTMLElement;
@@ -32,6 +33,21 @@
 
   let displayWord = ''; // Start with no word
   let lastWordChangeTime = 0;
+
+  // --- Map State ---
+  let showMap = false;
+  $: heroClass = `hero ${showMap ? 'map-visible' : ''}`;
+  const coordinates = { lon: 13.4135834, lat: 52.4898229 }; // Fichtestraße 25
+
+  function toggleMap() {
+    showMap = !showMap;
+  }
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      toggleMap();
+    }
+  }
 
   // --- Main Animation Loop ---
   function animationLoop(now: number) {
@@ -132,8 +148,22 @@
   });
 </script>
 
-<main class="hero" bind:this={root} on:pointerdown={onPointerDown} on:pointermove={onPointerMove}>
-  <div class="headline-container">
+<main bind:this={root}>
+  <div
+    class={heroClass}
+    on:pointerdown={onPointerDown}
+    on:pointermove={onPointerMove}
+    on:click={toggleMap}
+    on:keydown={handleKeydown}
+    role="button"
+    tabindex="0"
+  >
+    {#if showMap}
+      <div class="map-container">
+        <Map lon={coordinates.lon} lat={coordinates.lat} />
+      </div>
+    {/if}
+    <div class="headline-container">
     <h1 class="brand" bind:this={brandEl}>
       <span class="f" bind:this={fEl}>f</span>
       {#key displayWord}
@@ -145,6 +175,7 @@
     </h1>
     <span class="tagline">berlin.</span>
   </div>
+</div>
 </main>
 
 <style>
@@ -216,5 +247,27 @@
     .tagline {
       font-size: 5rem;
     }
+  }
+
+  .map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 500ms ease-out, transform 500ms ease-out;
+  }
+
+  .hero.map-visible .map-container {
+    opacity: 0.25; /* Make it more subtle */
+    transform: scale(1);
+  }
+
+  .headline-container {
+    position: relative;
+    z-index: 1;
   }
 </style>
