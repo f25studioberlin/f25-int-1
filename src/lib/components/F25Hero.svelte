@@ -46,10 +46,10 @@
     gapVelocity *= damping;
     currentGap += gapVelocity * (dt / 16.67);
 
-    // Idle behavior
-    if (pointer.velocity < 0.01 && Math.abs(targetGap - currentGap) < 1) {
-      targetGap = 10;
-    }
+    // On every frame, decay the pointer's velocity and update the target gap accordingly.
+    // This ensures the gap smoothly closes when the user stops moving the mouse.
+    pointer.decay();
+    targetGap = mapToCurve(pointer.velocity, 0, 50, 0, 600);
 
     // --- Word Selection (The New Logic) ---
     const maxGap = Math.max(240, 0.4 * window.innerWidth);
@@ -63,7 +63,7 @@
       bestFit = wordSizer.getRandomLargeWord();
       lastWordChangeTime = now;
     } else {
-      bestFit = wordSizer.findBestFit(currentGap);
+      bestFit = wordSizer.findBestFit(currentGap, displayWord);
     }
 
     // --- DEBUG LOGS ---
@@ -90,9 +90,7 @@
   // --- Event Handlers & Lifecycle ---
   function onPointerMove(e: PointerEvent) {
     if (browser) {
-      pointer.update(e); // Corrected: pass the whole event
-      // Increased inputMax to make it less sensitive to small movements.
-      targetGap = mapToCurve(pointer.velocity, 0, 50, 0, 600);
+      pointer.update(e); // Pass the event to update velocity instantly
     }
   }
 
@@ -128,15 +126,18 @@
 </script>
 
 <main class="hero" bind:this={root}>
-  <h1 class="brand">
-    <span class="f" bind:this={fEl}>f</span>
-    {#key displayWord}
-      <span class="word" bind:this={wordEl}>
-        {displayWord}
-      </span>
-    {/key}
-    <span class="twenty-five" bind:this={twentyFiveEl}>25</span>
-  </h1>
+  <div class="headline-container">
+    <h1 class="brand">
+      <span class="f" bind:this={fEl}>f</span>
+      {#key displayWord}
+        <span class="word" bind:this={wordEl}>
+          {displayWord}
+        </span>
+      {/key}
+      <span class="twenty-five" bind:this={twentyFiveEl}>25</span>
+    </h1>
+    <span class="tagline">berlin.</span>
+  </div>
 </main>
 
 <style>
@@ -160,7 +161,7 @@
 
   .brand {
     position: relative;
-    font-family: 'Clash Display', sans-serif;
+    font-family: inherit;
     font-size: 20rem;
     font-weight: 500;
     line-height: 1;
@@ -184,5 +185,20 @@
   .word {
     color: #000;
     /* The WordSizer ensures the word fits, so no special handling needed */
+  }
+
+  .headline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .tagline {
+    font-family: inherit;
+    font-size: 10rem; /* Half of headline's 20rem */
+    color: #000;
+    font-weight: 500; /* Match headline weight */
+    line-height: 1;
   }
 </style>

@@ -71,6 +71,14 @@ export class PointerTracker {
   public get velocity(): number {
     return this.smoothedV;
   }
+
+  /**
+   * Decays the velocity over time. Call this on every animation frame.
+   */
+  public decay(): void {
+    // This factor brings the velocity down by ~95% every second if running at 60fps
+    this.smoothedV *= 0.95;
+  }
 }
 
 export interface SizedWord {
@@ -100,29 +108,69 @@ export class WordSizer {
    * Finds the word with the width closest to the target width.
    * Uses binary search for efficiency.
    */
-  public findBestFit(targetWidth: number): SizedWord | null {
+  public findBestFit(targetWidth: number, currentWord: string | null): SizedWord | null {
     if (this.sizedWords.length === 0) return null;
 
+    // Define the acceptable width range (e.g., 80% to 100% of the gap)
+    const lowerBoundWidth = targetWidth * 0.8;
+
+    // Find the upper bound: the largest word that fits within targetWidth
     let low = 0;
     let high = this.sizedWords.length - 1;
-    let bestFitIndex = -1;
+    let upperBoundIndex = -1;
 
-    // Handle edge cases
     if (targetWidth < this.sizedWords[0].width) {
       return null; // Gap is too small for any word
     }
 
     while (low <= high) {
-        const mid = Math.floor((low + high) / 2);
-        if (this.sizedWords[mid].width <= targetWidth) {
-            bestFitIndex = mid; // This is a potential best fit
-            low = mid + 1; // Try for a larger word
-        } else {
-            high = mid - 1; // Word is too big, try smaller
-        }
+      const mid = Math.floor((low + high) / 2);
+      if (this.sizedWords[mid].width <= targetWidth) {
+        upperBoundIndex = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
 
-    return bestFitIndex !== -1 ? this.sizedWords[bestFitIndex] : null;
+    if (upperBoundIndex === -1) {
+      return null;
+    }
+
+    // Find the lower bound: the first word that is >= lowerBoundWidth
+    low = 0;
+    high = upperBoundIndex; // No need to search beyond the upper bound
+    let lowerBoundIndex = -1;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (this.sizedWords[mid].width >= lowerBoundWidth) {
+        lowerBoundIndex = mid;
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+
+    if (lowerBoundIndex === -1) {
+      // This case shouldn't happen if upperBoundIndex is valid, but as a fallback:
+      return this.sizedWords[upperBoundIndex];
+    }
+
+    // We have a range of suitable words from lowerBoundIndex to upperBoundIndex
+    const candidateWords = this.sizedWords.slice(lowerBoundIndex, upperBoundIndex + 1);
+
+    // Filter out the current word to avoid repetition
+    let filteredCandidates = candidateWords.filter((sw) => sw.word !== currentWord);
+
+    // If filtering left no options (e.g., only one word fits), use the original candidates
+    if (filteredCandidates.length === 0) {
+      filteredCandidates = candidateWords;
+    }
+
+    // Pick a random word from the candidates
+    const randomIndex = Math.floor(Math.random() * filteredCandidates.length);
+    return filteredCandidates[randomIndex];
   }
 
   /**
