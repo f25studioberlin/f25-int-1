@@ -2,6 +2,7 @@
 // Note: This is a starter set. You can add more or load from a service.
 // The UI shows the word WITHOUT the leading 'f' because the leading 'f' is drawn separately.
 export const fWords: string[] = [
+  // English (Existing + New from Merriam-Webster)
   'fabric', 'fable', 'fabled', 'fabulous', 'facet', 'facade', 'face', 'facility', 'fact', 'factor', 'factory', 'faculty',
   'fade', 'fading', 'fahrenheit', 'fail', 'fair', 'faith', 'fake', 'falcon', 'fall', 'fallen', 'falling', 'false', 'fame', 'familiar',
   'family', 'famine', 'famous', 'fan', 'fancy', 'fantasy', 'fantastic', 'far', 'fare', 'farm', 'farmer', 'farming', 'fascinate', 'fashion',
@@ -23,11 +24,44 @@ export const fWords: string[] = [
   'forth', 'fortify', 'fortress', 'fortune', 'forum', 'forward', 'found', 'foundation', 'founder', 'foundry', 'fountain', 'four', 'fourth', 'fowl',
   'fox', 'foxtrot', 'foyer', 'fragile', 'fragment', 'fragrance', 'frail', 'frame', 'framework', 'franc', 'frank', 'frantic', 'fraud', 'fray',
   'freak', 'freckle', 'free', 'freed', 'freedom', 'freeform', 'freelance', 'freely', 'freeze', 'freezer', 'freight', 'french', 'frenzy', 'frequency',
-  'frequent', 'fresh', 'freshen', 'freshly', 'friend', 'friendly', 'friendship', 'fright', 'frighten', 'fringe', 'frisky', 'fritter', 'frolic',
+  'frequent', 'fresh', 'freshen', 'freshly', 'friend', 'friendly', 'friendship', 'fright', 'frighten', 'fringe', 'frisky', 'fritter', 'frivolous',
   'front', 'frontier', 'frost', 'frown', 'frozen', 'frugal', 'fruit', 'fruitful', 'frustrate', 'fry', 'fuel', 'fugitive', 'fulcrum', 'fulfil',
   'full', 'fuller', 'fullest', 'fully', 'fulsome', 'fume', 'fumigate', 'fun', 'function', 'fund', 'fundamental', 'funding', 'fungi', 'fungus',
   'funnel', 'funny', 'fur', 'furious', 'furnace', 'furnish', 'furniture', 'furor', 'furry', 'further', 'fury', 'fuse', 'fusion', 'fuss', 'fussy',
-  'futile', 'future', 'futurism', 'fuzzy', 'falestina' 
+  'futile', 'future', 'futurism', 'fuzzy', 'factoid', 'farfet', 'faux', 'fecials', 'felinophobes', 'feoda', 'fervidly', 'fiar', 'filmography',
+  'fingertip', 'flailing', 'flay', 'fliffus', 'flossy', 'flukey', 'fogbow', 'fondle', 'foozling', 'foredone', 'forme', 'fractional', 'fraudulency',
+  'flukeworm', 'fogbound', 'fondish', 'foozler', 'foredoing', 'fortnighter', 'fraudulence', 'frighted', 'fruiteress', 'fruitery', 'fulgency',
+  'fumose', 'furling', 'furlong', 'fz',
+
+  // German
+  'Farbe', 'Fest', 'Feuer', 'Fisch', 'Flasche', 'fliegen', 'Frau', 'Freund', 'Frühling', 'Fuchs',
+
+  // Spanish
+  'fácil', 'familia', 'fiesta', 'flor', 'fuego', 'fuerte', 'fútbol',
+
+  // French
+  'fleur', 'fromage', 'famille', 'fenêtre', 'fille', 'frère',
+
+  // Italian
+  'famiglia', 'festa', 'fiore', 'formaggio', 'fratello', 'frutta',
+
+  // Portuguese
+  'faca', 'falar', 'família', 'festa', 'filho', 'flor', 'fogo',
+
+  // Dutch
+  'familie', 'fiets', 'foto', 'fout',
+
+  // Swedish
+  'familj', 'färg', 'fönster', 'fotboll',
+
+  // Russian
+  'факт', 'ферма', 'фигура', 'фильм', 'флаг', 'флот', 'фото', 'фрукт', 'футболка',
+
+  // Japanese
+  '富士山', '不思議', '普通', '冬',
+
+  // User-specified
+  'falestina'
 ];
 
 export function ensureFHead(words: string[]): string[] {
