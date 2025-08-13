@@ -49,7 +49,7 @@
     // On every frame, decay the pointer's velocity and update the target gap accordingly.
     // This ensures the gap smoothly closes when the user stops moving the mouse.
     pointer.decay();
-    targetGap = mapToCurve(pointer.velocity, 0, 50, 0, 600);
+    targetGap = mapToCurve(pointer.velocity, 0, 2.5, 0, 600); // Drastically increased sensitivity
 
     // --- Word Selection (The New Logic) ---
     const maxGap = Math.max(240, 0.4 * window.innerWidth);
