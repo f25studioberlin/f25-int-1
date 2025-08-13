@@ -50,7 +50,17 @@ export const googleFonts = [
   'Rajdhani:wght@700',
   'Kanit:wght@800;900',
   'Titillium+Web:wght@900',
-  'Major+Mono+Display',
-  'Unica+One',
-  'Staatliches'
+  'Major Mono Display',
+  'Unica One',
+  'Staatliches',
+  'Syne Mono',
+  // Color Fonts
+  'Honk',
+  'Coral Pixels',
+  'Bungee Spice',
+  'Bungee Tint',
+  'Sixtyfour',
+  'Nabla',
+  'Blaka Ink',
+  'Noto Color Emoji'
 ];
