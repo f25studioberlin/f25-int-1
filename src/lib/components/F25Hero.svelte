@@ -147,7 +147,7 @@
 
   .hero {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,17 +155,15 @@
     color: #111;
     font-family: var(--brandFont);
     overflow: hidden;
+    cursor: crosshair;
   }
 
   .brand {
     position: relative;
-    height: 1em; /* Provide a stable height for absolute children */
-    font-size: clamp(8rem, 22vw, 24rem);
-    font-weight: 700;
+    font-family: 'Clash Display', sans-serif;
+    font-size: 20rem;
+    font-weight: 500;
     line-height: 1;
-    letter-spacing: -0.01em;
-    user-select: none;
-    margin: 0;
     white-space: nowrap;
   }
 
@@ -184,7 +182,7 @@
   }
 
   .word {
-    color: #888;
+    color: #000;
     /* The WordSizer ensures the word fits, so no special handling needed */
   }
 </style>

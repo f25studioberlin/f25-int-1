@@ -109,7 +109,7 @@ export class WordSizer {
 
     // Handle edge cases
     if (targetWidth < this.sizedWords[0].width) {
-      return this.sizedWords[0]; // Return smallest word if gap is too small
+      return null; // Gap is too small for any word
     }
 
     while (low <= high) {
@@ -122,7 +122,7 @@ export class WordSizer {
         }
     }
 
-    return bestFitIndex !== -1 ? this.sizedWords[bestFitIndex] : this.sizedWords[0];
+    return bestFitIndex !== -1 ? this.sizedWords[bestFitIndex] : null;
   }
 
   /**
