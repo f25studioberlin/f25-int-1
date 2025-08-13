@@ -101,7 +101,7 @@ export class PointerTracker {
    */
   public decay(): void {
     // This factor brings the velocity down by ~95% every second if running at 60fps
-    this.smoothedV *= 0.95;
+    this.smoothedV *= 0.97; // Slower decay, words stay longer
   }
 }
 

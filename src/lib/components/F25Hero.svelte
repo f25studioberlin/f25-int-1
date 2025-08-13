@@ -12,6 +12,7 @@
   let fEl: HTMLElement;
   let wordEl: HTMLElement;
   let twentyFiveEl: HTMLElement;
+  let brandEl: HTMLElement;
   const pointer = new PointerTracker();
   let wordSizer: WordSizer | null = null;
 
@@ -49,22 +50,15 @@
     // On every frame, decay the pointer's velocity and update the target gap accordingly.
     // This ensures the gap smoothly closes when the user stops moving the mouse.
     pointer.decay();
-    targetGap = mapToCurve(pointer.velocity, 0, 10, 0, 600); // Re-tuned for better balance
+    const maxAllowedGap = typeof window !== 'undefined' ? window.innerWidth * 0.8 : 600;
+    const calculatedTargetGap = mapToCurve(pointer.velocity, 0, 10, 0, 600);
+    targetGap = Math.min(calculatedTargetGap, maxAllowedGap); // Re-tuned and clamped
 
     // --- Word Selection (The New Logic) ---
-    const maxGap = Math.max(240, 0.4 * window.innerWidth);
-    const atMaxGap = currentGap / maxGap > 0.98;
-    const highVelocity = pointer.velocity > 2.0;
-
-    let bestFit: SizedWord | null = null;
-
-    // At max speed, constantly cycle through the longest words
-    if (atMaxGap && highVelocity && now - lastWordChangeTime > 100) {
-      bestFit = wordSizer.getRandomLargeWord();
-      lastWordChangeTime = now;
-    } else {
-      bestFit = wordSizer.findBestFit(currentGap, displayWord);
-    }
+    // The findBestFit function is smart enough to handle all cases, including
+    // finding a variety of words when the gap is large. Removing the special
+    // case for atMaxGap simplifies the code and improves word variety.
+    const bestFit = wordSizer.findBestFit(currentGap, displayWord);
 
     // --- DEBUG LOGS ---
     console.log({
@@ -75,6 +69,18 @@
     });
 
     root.style.setProperty('--current-gap', `${currentGap.toFixed(2)}px`);
+
+    // --- Dynamic Scaling to Fit Viewport ---
+    if (brandEl) {
+      const brandWidth = brandEl.offsetWidth;
+      const screenWidth = window.innerWidth;
+      if (brandWidth > screenWidth) {
+        const scale = (screenWidth * 0.95) / brandWidth; // 95% to leave some margin
+        brandEl.style.transform = `scale(${scale})`;
+      } else {
+        brandEl.style.transform = 'scale(1)';
+      }
+    }
 
     // When the gap shrinks, findBestFit will naturally select smaller words.
     // The word will only be empty if no word can fit at all.
@@ -127,7 +133,7 @@
 
 <main class="hero" bind:this={root} on:pointerdown={onPointerDown} on:pointermove={onPointerMove}>
   <div class="headline-container">
-    <h1 class="brand">
+    <h1 class="brand" bind:this={brandEl}>
       <span class="f" bind:this={fEl}>f</span>
       {#key displayWord}
         <span class="word" bind:this={wordEl}>
