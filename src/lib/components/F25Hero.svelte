@@ -25,9 +25,6 @@
     }
     return array;
   };
-  const words = shuffle(
-    Array.from(new Set(RAW_WORDS.map((w) => w.trim().toLowerCase()).filter(Boolean)))
-  );
   const stripF = (w: string) => w.replace(/^f/i, '');
 
   // --- Animation & Word State ---
@@ -142,8 +139,13 @@
     // Wait for the new font to be ready before measuring words
     await document.fonts.ready;
 
+    // Shuffle the full word list and take a random subset for this session.
+    const sessionWords = shuffle(
+      Array.from(new Set(RAW_WORDS.map((w) => w.trim().toLowerCase()).filter(Boolean)))
+    ).slice(0, 100); // Use a subset of 100 words per session
+
     const fontStyle = getComputedStyle(root).font;
-    wordSizer = new WordSizer(words.map(stripF), fontStyle);
+    wordSizer = new WordSizer(sessionWords.map(stripF), fontStyle);
 
     raf = requestAnimationFrame(animationLoop);
   }
