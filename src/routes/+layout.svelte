@@ -9,3 +9,13 @@
 </svelte:head>
 
 {@render children?.()}
+
+<style>
+  :global(html, body) {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    /* Prevent scrollbars from the hero component itself */
+    overflow: hidden;
+  }
+</style>

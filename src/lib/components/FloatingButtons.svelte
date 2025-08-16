@@ -1,21 +1,22 @@
 <script lang="ts">
-  import { userPillsOpen } from '$lib/stores';
+  import { userPillsOpen, infoLinkOpen, showMap } from '$lib/stores';
   import UserPills from './UserPills.svelte';
   import InfinityLink from './InfinityLink.svelte';
-
-  let infoLinkOpen = false;
+  import MapButton from './MapButton.svelte';
 
   function toggleUserPills() {
     userPillsOpen.update((n) => !n);
     if ($userPillsOpen) {
-      infoLinkOpen = false; // Close info if user pills are opened
+      infoLinkOpen.set(false);
+      showMap.set(false);
     }
   }
 
   function toggleInfoLink() {
-    infoLinkOpen = !infoLinkOpen;
-    if (infoLinkOpen) {
-      userPillsOpen.set(false); // Close user pills if info is opened
+    infoLinkOpen.update((n) => !n);
+    if ($infoLinkOpen) {
+      userPillsOpen.set(false);
+      showMap.set(false);
     }
   }
 </script>
@@ -30,12 +31,15 @@
     </button>
   </div>
   <div class="button-wrapper">
-    {#if infoLinkOpen}
+    {#if $infoLinkOpen}
       <InfinityLink />
     {/if}
     <button class="floating-button" on:click={toggleInfoLink} aria-label="Info Menu">
       <span>∞</span>
     </button>
+  </div>
+  <div class="button-wrapper">
+    <MapButton />
   </div>
 </div>
 
@@ -68,6 +72,7 @@
     cursor: pointer;
     box-shadow: none;
     transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
     color: #fff;
   }
 
