@@ -18,7 +18,16 @@
   let wordSizer: WordSizer | null = null;
 
   // --- Word Dictionary Setup ---
-  const words = Array.from(new Set(RAW_WORDS.map((w) => w.trim().toLowerCase()).filter(Boolean)));
+  const shuffle = (array: string[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+  const words = shuffle(
+    Array.from(new Set(RAW_WORDS.map((w) => w.trim().toLowerCase()).filter(Boolean)))
+  );
   const stripF = (w: string) => w.replace(/^f/i, '');
 
   // --- Animation & Word State ---
@@ -128,7 +137,7 @@
     link.rel = 'stylesheet';
     link.href = fontUrl;
     document.head.appendChild(link);
-    root.style.setProperty('--brandFont', `'${family}', system-ui, sans-serif`);
+    document.documentElement.style.setProperty('--brandFont', `'${family}', system-ui, sans-serif`);
 
     // Wait for the new font to be ready before measuring words
     await document.fonts.ready;
