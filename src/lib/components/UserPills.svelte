@@ -4,12 +4,12 @@
 
   const users = [
     { name: 'shahab', url: 'https://variable.gallery/' },
-    { name: 'lilo', url: 'https://github.com/f25-dev/another' },
+    { name: 'lilo', url: 'http://www.liloming.de/' },
     { name: 'niko', url: 'http://www.niconitsche.com/' },
     { name: 'daniela', url: 'https://www.daniellebarkay.com/' },
     { name: 'bella', url: 'http://www.textilelab.berlin/' },
     { name: 'elena', url: 'https://www.rabkina.org ' },
-    { name: 'maryvonne', url: 'http://www.liloming.de/' },
+    { name: 'maryvonne', url: 'http://www.google.de/' },
   ];
 </script>
 
