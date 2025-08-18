@@ -5,11 +5,11 @@
   const users = [
     { name: 'shahab', url: 'https://variable.gallery/' },
     { name: 'lilo', url: 'https://github.com/f25-dev/another' },
-    { name: 'niko', url: 'https://github.com/f25-dev/dev' },
-    { name: 'daniela', url: 'https://github.com/f25-dev/dev' },
-    { name: 'bella', url: 'https://github.com/f25-dev/dev' },
-    { name: 'elena', url: 'https://github.com/f25-dev/dev' },
-    { name: 'maryvonne', url: 'https://github.com/f25-dev/dev' },
+    { name: 'niko', url: 'http://www.niconitsche.com/' },
+    { name: 'daniela', url: 'https://www.daniellebarkay.com/' },
+    { name: 'bella', url: 'http://www.textilelab.berlin/' },
+    { name: 'elena', url: 'https://www.rabkina.org ' },
+    { name: 'maryvonne', url: 'http://www.liloming.de/' },
   ];
 </script>
 
